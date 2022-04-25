@@ -1,3 +1,5 @@
+## SECTION 1,2 (Getting started and Introduction to docker)
+
 - run this command for building images
     `docker build -t hello-docker .`
     . = docker file location
@@ -6,7 +8,9 @@
 - `docke run <NAME>` == start the container
 - `docker run <NAME>` == check first if there is already this image docker run it other wise docker pull latest image for given name
 - `docker run -it <NAME>` == run the image interactive mode
-## Linux shell commands
+
+## SECTION 3 (The linux command line)
+
 - `rm file*` == remove file which starts with given name
 - `more <filename>` command shows the content of file like `cat` command but paginate the content but we only scrool to down with this command
 - `less <filename> ` command shows the content of file like `cat` command but paginate the content 
@@ -51,7 +55,8 @@
 - `chmod g+x` or `chmod g-x` give or remove executable(x) permission to group
 - `chmod g+x` or `chmod o-x` give or remove executable(x) permission to other
 
-## Images and containers
+## SECTION 4 (Building images)
+
 - Dockerfile instructions
 - FROM
 - WORKDIR
@@ -87,7 +92,7 @@
 - We can ovewrite the CMD command when we run the contaier if we don't do this we can use ENTRYPOINT instructions
 - Also ENTRYPOINT can be overwritten but for this we have to pass --entrypoint flag
 - `docker image prune` remove all the images
-- `docker container prune` remove all the container
+- `docker container prune` remove all the stopped container
 - We can add a tag to images
     `docker build -t react-app:1 .`
 - We can remove a tag from images
@@ -96,3 +101,26 @@
     `docker image save -o react-app.tar react-app`
 - We can load images
     `docker image load -i react-app.tar`
+
+## SECTION 5 (Working with containers)
+
+- `docker run -d <name,tag>` run the container in background
+- We can give name to container `docker run -d --name blue-sky react-app`
+- `docker logs <name>` command shows the output of container
+- `docker logs -f <name>` command shows the output of container but follows its outputs
+- `docker logs t <name>` command shows the output of container with time
+- We can map port using -p flag
+    `docker run -d -p 80:3000 --name c1 react-app`
+- We execute a command in running container with `docker exec`
+    `docker exec <container name> ls`
+- `docker exec -it <container name> sh`
+- `docker stop <container name>` stop the running container
+- `docker start <container name>` start the stopped container
+- `docker run <container name>` start a new container
+- `docker rm <container name>` remove the container if the container does not run if it runs we can use -f (force) flag to remove it `docker rm -f <container name>`
+- `docker volume create <name>` create a volume that includes our files inside here
+- `docker run -d -p 4000:3000 -v app-data:/app/data react-app` creates a container and its volume named `app-data`
+- We can copy files between host and container
+    `docker cp <source> <destination>`
+    - `docker cp 4c8:/app/test.txt .`  == copy file from the container to current directory
+- `docker run -d -p 4000:3000 -v $(pwd):/app react-app` creates a container and its volume named full path of our current host so if we change any file it immediately change the container file
