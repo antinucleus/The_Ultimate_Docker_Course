@@ -51,3 +51,48 @@
 - `chmod g+x` or `chmod g-x` give or remove executable(x) permission to group
 - `chmod g+x` or `chmod o-x` give or remove executable(x) permission to other
 
+## Images and containers
+- Dockerfile instructions
+- FROM
+- WORKDIR
+- COPY
+- ADD
+- RUN
+- ENV
+- EXPOSE
+- USER
+- CMD
+- ENTRYPOINT
+
+- For copying files into container we can use COPY and ADD
+    - COPY :
+        - For all files
+            `COPY . /app`
+        - For specific files
+            `COPY package.json /app`
+        - We can use []
+            `COPY ["package.json","/app"]`
+    - ADD :
+        - Two more advantages over COPY
+        - We can add file from url
+            `ADD https://www.texts.com/a.txt /app`
+        - We can add zip file and docke automatically uncompress the zip file
+            `ADD test.zip /app`
+
+- We can exclude files or directories so we can use .dockerignore
+- EXPOSE provide us to set that container listen given port 
+- We can run command after run the container
+    `docker run react-app npm start`
+- CMD runs commands at runtime and RUN runs commands at build time
+- We can ovewrite the CMD command when we run the contaier if we don't do this we can use ENTRYPOINT instructions
+- Also ENTRYPOINT can be overwritten but for this we have to pass --entrypoint flag
+- `docker image prune` remove all the images
+- `docker container prune` remove all the container
+- We can add a tag to images
+    `docker build -t react-app:1 .`
+- We can remove a tag from images
+    `docker image remove react-app:1`
+- We can save our images to file
+    `docker image save -o react-app.tar react-app`
+- We can load images
+    `docker image load -i react-app.tar`
