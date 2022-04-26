@@ -124,3 +124,14 @@
     `docker cp <source> <destination>`
     - `docker cp 4c8:/app/test.txt .`  == copy file from the container to current directory
 - `docker run -d -p 4000:3000 -v $(pwd):/app react-app` creates a container and its volume named full path of our current host so if we change any file it immediately change the container file
+
+## SECTION 6 (Running multi-container applications)
+
+- For deleting all container `docker container rm $(docker container ls -a -q)` // -a returns also stopped container and -q returns only id of container
+- For deleting all image `docker image rm $(docker image ls -q)` 
+- yaml(yml)  vs  json
+- `docker-compose build` build the images
+- `docker-compose build --no-cache` build the images without using cache
+- `docker-compose up -d` start the containers in background
+- `docker-compose down` stop the container and remove it
+

@@ -1,5 +1,8 @@
 # dependencies
 /react-app/node_modules
+/vidly/backend/node_modules
+/vidly/frontend/node_modules
+
 /react-app/.pnp
 .pnp.js
 
